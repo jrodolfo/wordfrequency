@@ -15,6 +15,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
+ * Util class to help with files.
+ *
  * Created by Rod Oliveira on 18-Jun-2017
  */
 public class Util {

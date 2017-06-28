@@ -7,7 +7,10 @@ import static com.jrodolfo.wordfrequency.Terms.SortOrder.DESC;
 
 
 /**
- * Created by Rod Oliveira (jrodolfo.com) on 2017-06-18.
+ * This class holds all terms found inside the file being parsed,
+ * with its frequency.
+ *
+ * Created by Rod Oliveira (jrodolfo.com) on 2017-06-18
  */
 public class Terms {
 

@@ -16,7 +16,10 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * Created by Rod Oliveira on 08-Sep-2016.
+ * Main class of this application, responsible for parsing
+ * the data, and saving the results in output files.
+ *
+ * Created by Rod Oliveira (jrodolfo.com) on 2017-06-18
  */
 public class FileParser {
 
@@ -115,7 +118,6 @@ public class FileParser {
     public void write(String fileName) {
         fileName = Util.removePath(fileName);
         fileName = Util.removeExtension(fileName);
-
 //        Util.writeToFile(fileWithoutPath + "-ordered-by-word.txt",           terms.getMapOrderedByValueAsc());
 //        Util.writeToFile(fileWithoutPath + "-ordered-by-frequency-asc.txt",  terms.getMapOrderedByValueAsc());
         Util.writeToFile(fileName + "-ordered-by-frequency-desc.txt", terms.getMapOrderedByValueDesc());

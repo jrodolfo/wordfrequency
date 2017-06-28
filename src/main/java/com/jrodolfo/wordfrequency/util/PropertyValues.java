@@ -10,8 +10,10 @@ import java.lang.invoke.MethodHandles;
 import java.util.Properties;
 
 /**
- * This class deals with the properties file by reading it and creating an object Properties
- * Created by Rod Oliveira on 18-Jun-2017
+ * This class deals with the properties file by
+ * reading it and creating a Properties object
+ *
+ * Created by Rod Oliveira (jrodolfo.com) on 2017-06-18
  */
 public class PropertyValues {
 
