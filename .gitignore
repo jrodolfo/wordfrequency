@@ -1,6 +1,5 @@
 *.log
 target/
-output/*.*
 
 # IntelliJ project files
 .idea/
