@@ -10,7 +10,7 @@ Pre-requisites: Java SE Development Kit 8, Maven, and GitHub account.
 
 Step 1) Clone the project:
 
-git clone https://github.com/jrodolfo/word-frequency
+git clone https://github.com/jrodolfo/wordfrequency
 
 Step 2) Check the files inside the resources/input folder - this is the place where you should put your files
 
