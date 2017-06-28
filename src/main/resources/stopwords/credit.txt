@@ -1,0 +1,15 @@
+English Stop Words
+http://www.ranks.nl/stopwords
+
+French Stop Words
+http://www.ranks.nl/stopwords/french
+http://www.perseus.tufts.edu/hopper/stopwords
+
+Latin
+http://www.perseus.tufts.edu/hopper/stopwords
+
+Portuguese Stop Words
+https://gist.github.com/alopes/5358189
+
+Spanish Stop Words
+http://www.ranks.nl/stopwords/spanish
