@@ -97,7 +97,7 @@ public class FileParser {
             String[] words = line.replaceAll(regExpression, "").toLowerCase().trim().split("\\s+");
             for (String word : words) {
                 if (useStopWords && stopWords.contains(word)) continue;
-                terms.addWord(word);
+                terms.addTerm(word);
             }
         }
     }
