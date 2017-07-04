@@ -20,10 +20,9 @@ public class Terms {
 
     Map<String, Integer> terms = new TreeMap<>();
 
-    public void addWord(String word) {
-        Integer count;
+    public void addTerm(String word) {
         if (terms.containsKey(word)) {
-            count = terms.get(word);
+            Integer count = terms.get(word);
             count++;
             terms.put(word, count);
         } else {
