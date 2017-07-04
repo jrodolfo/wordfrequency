@@ -98,7 +98,7 @@ public class FileParser {
                     term += str + " ";
                 }
                 term = term.trim();
-                terms.addWord(term);
+                terms.addTerm(term);
                 start++;
                 end++;
             }
