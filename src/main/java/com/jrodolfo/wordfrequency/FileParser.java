@@ -10,10 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
-import java.util.List;
-import java.util.Properties;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * Main class of this application, responsible for parsing
@@ -28,14 +25,18 @@ public class FileParser {
     private final static boolean useStopWords;
     private final static String stopWordsFile;
     private final static Set<String> stopWords;
+    private final static int numberOfWordsPerTerm;
+
     private List<String> filesToParse;
     private int numberOfWordsPerTerms;
     private Terms terms;
+    private List<String> listOfWords;
 
     static {
         properties = PropertyValues.getProperties();
         useStopWords = Boolean.parseBoolean(properties.getProperty("use.stop.words"));
         stopWordsFile = properties.getProperty("stop.words.file");
+        numberOfWordsPerTerm = Integer.parseInt(properties.getProperty("number.of.words.per.term"));
         if (useStopWords) {
             stopWords = getStopWords(stopWordsFile);
         } else {
@@ -67,11 +68,14 @@ public class FileParser {
     public void parse(String fileName) {
         String fileNameWithPath = getFileNameWithPath(fileName);
         terms = new Terms();
+        listOfWords = new ArrayList<>();
         String line;
         try (BufferedReader br = new BufferedReader(new FileReader(fileNameWithPath))) {
             while ((line = br.readLine()) != null) {
-                processLine(line);
+                //processLineMethodOne(line);
+                processLineMethodTwo(line);
             }
+            processListOfWords();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -80,16 +84,28 @@ public class FileParser {
         write(fileName);
     }
 
-    private static String getFileNameWithPath(String fileName) {
-        String fileNameWithPath = Util.getFileNameWithPath(fileName);
-        if (fileNameWithPath == null) {
-            logger.debug("Could not find the file " + fileName);
-            System.exit(-1);
+    private void processListOfWords() {
+        if (numberOfWordsPerTerm > 1) {
+            int start = 0;
+            int end = numberOfWordsPerTerm - 1;
+            int sizeOfList = listOfWords.size();
+            List<String> subList;
+            String term;
+            while (end < sizeOfList) {
+                subList = listOfWords.subList(start, end);
+                term = "";
+                for (String str : subList) {
+                    term += str + " ";
+                }
+                term = term.trim();
+                terms.addWord(term);
+                start++;
+                end++;
+            }
         }
-        return fileNameWithPath;
     }
 
-    private void processLine(String line) {
+    private void processLineMethodOne(String line) {
         line = line.trim();
         // regular expression representing any char that is not a blank or letter in any language
         String regExpression = "[^\\p{L} ]";
@@ -98,6 +114,20 @@ public class FileParser {
             for (String word : words) {
                 if (useStopWords && stopWords.contains(word)) continue;
                 terms.addWord(word);
+            }
+        }
+    }
+
+    private void processLineMethodTwo(String line) {
+        line = line.trim();
+        // regular expression representing any char that is not a blank or letter in any language
+        String regExpression = "[^\\p{L} ]";
+        if (line.length() > 0) {
+            String[] words = line.replaceAll(regExpression, "").toLowerCase().trim().split("\\s+");
+            for (String word : words) {
+                if (useStopWords && stopWords.contains(word)) continue;
+                // terms.addWord(word);
+                listOfWords.add(word);
             }
         }
     }
@@ -115,11 +145,20 @@ public class FileParser {
         }
     }
 
+    private static String getFileNameWithPath(String fileName) {
+        String fileNameWithPath = Util.getFileNameWithPath(fileName);
+        if (fileNameWithPath == null) {
+            logger.debug("Could not find the file " + fileName);
+            System.exit(-1);
+        }
+        return fileNameWithPath;
+    }
+
     public void write(String fileName) {
         fileName = Util.removePath(fileName);
         fileName = Util.removeExtension(fileName);
-//        Util.writeToFile(fileWithoutPath + "-ordered-by-word.txt",           terms.getMapOrderedByValueAsc());
-//        Util.writeToFile(fileWithoutPath + "-ordered-by-frequency-asc.txt",  terms.getMapOrderedByValueAsc());
+        // Util.writeToFile(fileName + "-ordered-by-word.txt",           terms.getMapOrderedByValueAsc());
+        // Util.writeToFile(fileName + "-ordered-by-frequency-asc.txt",  terms.getMapOrderedByValueAsc());
         Util.writeToFile(fileName + "-ordered-by-frequency-desc.txt", terms.getMapOrderedByValueDesc());
     }
 
