@@ -24,4 +24,5 @@ Step 6) Check the results inside the folder output
 
 ## To do
 
-1) Implement the feature "number of words per term"
+1) Add unit tests
+2) Add instructions to run the app from command line
