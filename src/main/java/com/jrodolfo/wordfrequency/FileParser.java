@@ -26,7 +26,7 @@ public class FileParser {
     private final static String stopWordsFile;
     private final static Set<String> stopWords;
     private final static int numberOfWordsPerTerm;
-    private final static int minimumFrequency;
+    private final static int minimumFrequencyThreshold;
 
 
     private List<String> filesToParse;
@@ -39,7 +39,7 @@ public class FileParser {
         useStopWords = Boolean.parseBoolean(properties.getProperty("use.stop.words"));
         stopWordsFile = properties.getProperty("stop.words.file");
         numberOfWordsPerTerm = Integer.parseInt(properties.getProperty("number.of.words.per.term"));
-        minimumFrequency = Integer.parseInt(properties.getProperty("minimum.frequency"));
+        minimumFrequencyThreshold = Integer.parseInt(properties.getProperty("minimum.frequency.threshold"));
         if (useStopWords) {
             stopWords = getStopWords(stopWordsFile);
         } else {
@@ -161,8 +161,8 @@ public class FileParser {
     public void write(String fileName) {
         fileName = Util.removePath(fileName);
         fileName = Util.removeExtension(fileName);
-        if (minimumFrequency > 1) {
-            terms.removeTermsWithFrequencyLowerThan(minimumFrequency);
+        if (minimumFrequencyThreshold > 1) {
+            terms.removeTermsWithFrequencyLowerThan(minimumFrequencyThreshold);
         }
         // Util.writeToFile(fileName + "-ordered-by-word.txt",           terms.getMapOrderedByValueAsc());
         // Util.writeToFile(fileName + "-ordered-by-frequency-asc.txt",  terms.getMapOrderedByValueAsc());
