@@ -1,314 +1,60 @@
-carbon de castel-jaloux,19
-la la la,13
-la porte de,12
-cadets de gascogne,10
-les cadets de,10
-de guiche qui,9
-cyrano ah roxane,8
-dans les loges,8
-de guiche se,8
-haussant les épaules,8
-le bret et,8
-le fâcheux mais,8
-monsieur de bergerac,8
-tout le monde,8
-à la porte,8
-ce sont les,7
-cyrano le bret,7
-de guiche de,7
-de guiche vous,7
-de plus en,7
-fin de lenvoi,7
-je nai pas,7
-la fin de,7
-la première fois,7
-plus en plus,7
-pour la première,7
-sous le balcon,7
-tout à fait,7
-bas à christian,6
-ce nest pas,6
-changeant de ton,6
-cyrano non non,6
-de guiche ah,6
-de guiche cest,6
-de guiche il,6
-de guiche je,6
-de guiche mais,6
-de guiche à,6
-de la maison,6
-de lenvoi je,6
-ha ha ha,6
-il faut que,6
-je vous aime,6
-le bret à,6
-lenvoi je touche,6
-les bras de,6
-porte de nesle,6
-sont les cadets,6
-sur le banc,6
-à de guiche,6
-a la fin,5
-a lair de,5
-avec un sourire,5
-ce que je,5
-christian oui je,5
-coups de feu,5
-cyrano je vous,5
-cétait vous cyrano,5
-dans la nuit,5
-dans les bras,5
-de la porte,5
-de la scène,5
-dune voix de,5
-faut que je,5
-il ne peut,5
-je le vois,5
-la main sur,5
-la main à,5
-la porte du,5
-la voix de,5
-le bret il,5
-le bret les,5
-le bret qui,5
-le monde se,5
-porte du fond,5
-roxane à cyrano,5
-se levant et,5
-sur la crête,5
-sur le balcon,5
-sur le talus,5
-tout à lheure,5
-un autre lui,5
-à la fin,5
-à la main,5
-ah mon dieu,4
-au lever du,4
-autour de lui,4
-bret et ragueneau,4
-bret à cyrano,4
-ce nest rien,4
-cest tout simple,4
-christian de neuvillette,4
-christian mais roxane,4
-comte de guiche,4
-cyrano bas à,4
-cyrano dune voix,4
-cyrano non christian,4
-cyrano oui oui,4
-cyrano qui a,4
-cyrano vous ne,4
-cyrano à part,4
-de carbon de,4
-de gascogne de,4
-de guiche et,4
-de guiche le,4
-depuis un moment,4
-dune voix terrible,4
-est sur le,4
-et le bret,4
-et que je,4
-guiche de guiche,4
-il en a,4
-il me semble,4
-il se lève,4
-il y a,4
-je ne suis,4
-je viens de,4
-je vous jure,4
-la duègne avec,4
-le bret ah,4
-le bret je,4
-le bret le,4
-le bret mais,4
-le geste de,4
-le jeune homme,4
-levant la tête,4
-lever du rideau,4
-lhôtel de bourgogne,4
-main sur lépaule,4
-oh je vous,4
-oui roxane roxane,4
-paraissant sur le,4
-que je suis,4
-que je vous,4
-roxane je vous,4
-roxane même jeu,4
-sil vous plaît,4
-soeur marthe mais,4
-sur la scène,4
-sur le perron,4
-sur le tendre,4
-sur son nez,4
-tous les cadets,4
-tout de suite,4
-un coup de,4
-un peu de,4
-une voix au,4
-vers la maison,4
-a ce moment,3
-a la porte,3
-ah de guiche,3
-au bras de,3
-au lieu de,3
-au milieu du,3
-au moment où,3
-autour de cyrano,3
-bras chargés de,3
-bras de christian,3
-bras de le,3
-bret le bret,3
-bret les cadets,3
-castel-jaloux les cadets,3
-ce nest plus,3
-cest trop fort,3
-christian je taime,3
-christian lui prenant,3
-christian mais cyrano,3
-christian mais je,3
-christian même jeu,3
-croisant les bras,3
-cyrano cest un,3
-cyrano cest vrai,3
-cyrano de bergerac,3
-cyrano eh bien,3
-cyrano même jeu,3
-cyrano non le,3
-cyrano oui je,3
-cyrano quelle heure,3
-cyrano se retournant,3
-cyrano tournant sa,3
-daigle jambe de,3
-dans cette ombre,3
-dans la rue,3
-dans mon carrosse,3
-dans sa poche,3
-dans une heure,3
-de castel-jaloux les,3
-de gascogne qui,3
-de guiche a,3
-de guiche monsieur,3
-de guiche regardant,3
-de guiche surpris,3
-de la chapelle,3
-de la lune,3
-de la rue,3
-de le bret,3
-de son pourpoint,3
-de tous côtés,3
-des cadets il,3
-des flacons de,3
-diable allait-il faire,3
-dieu la duègne,3
-discours sur le,3
-droite premier plan,3
-eh bien cyrano,3
-encore un peu,3
-et dune voix,3
-et je le,3
-et je ne,3
-fait un geste,3
-ferme les yeux,3
-fâcheux mais cyrano,3
-gascogne de carbon,3
-guerre de guiche,3
-guiche surpris et,3
-heureux qui loin,3
-il est mort,3
-il nest pas,3
-il ny a,3
-il se retourne,3
-il va venir,3
-jambe de cigogne,3
-je me bats,3
-je ne peux,3
-je ne sais,3
-je ne vous,3
-je touche il,3
-je vais lui,3
-je vais vous,3
-je veux vous,3
-je vous dis,3
-je vous le,3
-jette dans les,3
-jeune homme à,3
-la maison de,3
-le balcon cest,3
-le bret cest,3
-le bret eh,3
-le bret se,3
-le bret tu,3
-le bret va,3
-le duc de,3
-le mur du,3
-le vicomte mais,3
-les bras croisés,3
-les cadets se,3
-les mêmes moins,3
-loin des cours,3
-lui montrant la,3
-lui montrant roxane,3
-lui montrant un,3
-lui prenant la,3
-main à son,3
-mais roxane même,3
-mais vous ne,3
-mettent à jouer,3
-mon dieu la,3
-monsieur de cyrano,3
-monsieur de guiche,3
-monsieur le bret,3
-mur du jardin,3
-ne peux pas,3
-nest-ce pas que,3
-oeil daigle jambe,3
-on entend un,3
-oui je suis,3
-oui oui roxane,3
-pas du tout,3
-patissier apportant une,3
-perce-bedaine et casse-trogne,3
-porte de droite,3
-porte de la,3
-premier cadet ah,3
-que ce soit,3
-que cest que,3
-que diable allait-il,3
-que je les,3
-que je ne,3
-que je te,3
-que le portier,3
-quest-ce que cest,3
-qui loin des,3
-qui va là,3
-quà la fin,3
-rien de plus,3
-roxane eh bien,3
-roxane la duègne,3
-roxane paraissant sur,3
-roxane roxane un,3
-roxane à christian,3
-sa chaise vers,3
-se croisant les,3
-se met à,3
-se mettent à,3
-sur lui et,3
-sur une chaise,3
-tournant sa chaise,3
-tout ce que,3
-tout dun coup,3
-tout le temps,3
-un autre cadet,3
-ventrebieu qui va,3
-voici les cadets,3
-voix au dehors,3
-vous cyrano je,3
-vous cyrano non,3
-vous ne vous,3
-à christian je,3
-à christian le,3
-à cyrano le,3
-à cyrano qui,3
-à cyrano vous,3
-à le bret,3
-à son épée,3
+la la la la,10
+les cadets de gascogne,10
+de plus en plus,7
+la fin de lenvoi,7
+pour la première fois,7
+ce sont les cadets,6
+de lenvoi je touche,6
+fin de lenvoi je,6
+a la fin de,5
+dans les bras de,5
+il faut que je,5
+la porte de nesle,5
+sont les cadets de,5
+au lever du rideau,4
+cyrano bas à christian,4
+de carbon de castel-jaloux,4
+de guiche de guiche,4
+la main sur lépaule,4
+la porte du fond,4
+le bret et ragueneau,4
+le bret à cyrano,4
+a la porte de,3
+ah mon dieu la,3
+bas à christian je,3
+bras de le bret,3
+cadets de gascogne de,3
+carbon de castel-jaloux les,3
+cyrano oui oui roxane,3
+cyrano tournant sa chaise,3
+cétait vous cyrano non,3
+daigle jambe de cigogne,3
+de castel-jaloux les cadets,3
+de gascogne de carbon,3
+de guiche surpris et,3
+discours sur le tendre,3
+est sur le talus,3
+gascogne de carbon de,3
+ha ha ha ha,3
+heureux qui loin des,3
+la main à son,3
+la porte de droite,3
+le bret le bret,3
+le bret les cadets,3
+le fâcheux mais cyrano,3
+le mur du jardin,3
+mais roxane même jeu,3
+mon dieu la duègne,3
+oeil daigle jambe de,3
+oui roxane roxane un,3
+que diable allait-il faire,3
+qui loin des cours,3
+roxane paraissant sur le,3
+se croisant les bras,3
+se mettent à jouer,3
+sur le balcon cest,3
+tournant sa chaise vers,3
+tout le monde se,3
+une voix au dehors,3
+ventrebieu qui va là,3
+voici les cadets de,3

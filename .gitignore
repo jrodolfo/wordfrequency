@@ -4,3 +4,7 @@ target/
 # IntelliJ project files
 .idea/
 *.iml
+
+# some input/output files that we don't want to public to the world
+src/main/resources/input/file-06-log.txt
+output/file-06-log-ordered-by-frequency-desc.txt

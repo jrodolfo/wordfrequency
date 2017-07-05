@@ -89,7 +89,7 @@ public class FileParser {
     private void processListOfWords(int numberOfWords) {
         if (numberOfWords > 1) {
             int start = 0;
-            int end = numberOfWordsPerTerm - 1;
+            int end = numberOfWords - 1;
             int sizeOfList = listOfWords.size();
             List<String> subList;
             StringBuilder term;
