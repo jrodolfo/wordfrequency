@@ -30,6 +30,20 @@ public class Terms {
         }
     }
 
+    public void removeTermsWithFrequencyLowerThan(int frequency) {
+        Map<String, Integer> termsAux = new TreeMap<>();
+        String key;
+        Integer value;
+        for (Map.Entry<String, Integer> node : terms.entrySet()) {
+            key = node.getKey();
+            value = node.getValue();
+            if (value >= frequency) {
+                termsAux.put(key, value);
+            }
+        }
+        terms = termsAux;
+    }
+
     public String getMapOrderedByKey() {
         return toString(terms);
     }

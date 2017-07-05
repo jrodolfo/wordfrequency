@@ -35,6 +35,7 @@ public class PropertyValues {
             logger.debug("use.stop.words=" + properties.getProperty("use.stop.words"));
             logger.debug("stop.words.file=" + properties.getProperty("stop.words.file"));
             logger.debug("number.of.words=" + properties.getProperty("number.of.words.per.term"));
+            logger.debug("minimum.frequency=" + properties.getProperty("minimum.frequency"));
         } catch (Exception e) {
             logger.error("Exception: " + e);
         } finally {

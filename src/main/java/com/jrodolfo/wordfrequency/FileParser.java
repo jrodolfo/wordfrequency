@@ -26,6 +26,8 @@ public class FileParser {
     private final static String stopWordsFile;
     private final static Set<String> stopWords;
     private final static int numberOfWordsPerTerm;
+    private final static int minimumFrequency;
+
 
     private List<String> filesToParse;
     private int numberOfWordsPerTerms;
@@ -37,6 +39,7 @@ public class FileParser {
         useStopWords = Boolean.parseBoolean(properties.getProperty("use.stop.words"));
         stopWordsFile = properties.getProperty("stop.words.file");
         numberOfWordsPerTerm = Integer.parseInt(properties.getProperty("number.of.words.per.term"));
+        minimumFrequency = Integer.parseInt(properties.getProperty("minimum.frequency"));
         if (useStopWords) {
             stopWords = getStopWords(stopWordsFile);
         } else {
@@ -72,10 +75,9 @@ public class FileParser {
         String line;
         try (BufferedReader br = new BufferedReader(new FileReader(fileNameWithPath))) {
             while ((line = br.readLine()) != null) {
-                //processLineMethodOne(line);
-                processLineMethodTwo(line);
+                processLine(line);
             }
-            processListOfWords();
+            processListOfWords(numberOfWordsPerTerms);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -84,49 +86,51 @@ public class FileParser {
         write(fileName);
     }
 
-    private void processListOfWords() {
-        if (numberOfWordsPerTerm > 1) {
+    private void processListOfWords(int numberOfWords) {
+        if (numberOfWords > 1) {
             int start = 0;
             int end = numberOfWordsPerTerm - 1;
             int sizeOfList = listOfWords.size();
             List<String> subList;
-            String term;
+            StringBuilder term;
+            String sep = " ";
             while (end < sizeOfList) {
-                subList = listOfWords.subList(start, end);
-                term = "";
+                term = new StringBuilder();
+                subList = listOfWords.subList(start, end + 1);
                 for (String str : subList) {
-                    term += str + " ";
+                    term.append(sep).append(str);
                 }
-                term = term.trim();
-                terms.addTerm(term);
+                terms.addTerm(term.toString().trim());
                 start++;
                 end++;
             }
-        }
-    }
-
-    private void processLineMethodOne(String line) {
-        line = line.trim();
-        // regular expression representing any char that is not a blank or letter in any language
-        String regExpression = "[^\\p{L} ]";
-        if (line.length() > 0) {
-            String[] words = line.replaceAll(regExpression, "").toLowerCase().trim().split("\\s+");
-            for (String word : words) {
-                if (useStopWords && stopWords.contains(word)) continue;
+        } else {
+            for (String word : listOfWords) {
                 terms.addTerm(word);
             }
         }
     }
 
-    private void processLineMethodTwo(String line) {
+    /**
+     * This method process a non-null string representing a line in file being parsed. It removes
+     * all characters that are not blank, letters (ascii or foreign language), digits,
+     * underscore, and minus sign. If the class is using stop words, it removes them
+     * @param line
+     */
+    private void processLine(String line) {
+        if (line == null) throw new IllegalArgumentException("this method does not accept null line");
         line = line.trim();
-        // regular expression representing any char that is not a blank or letter in any language
-        String regExpression = "[^\\p{L} ]";
+        // Regular expression representing any char that is not:
+        //     1) a blank
+        //     2) a letter in any language
+        //     3) digits
+        //     4) underscore
+        //     5) minus sign
+        String regExpression = "[^\\p{L}0-9_\\- ]";
         if (line.length() > 0) {
             String[] words = line.replaceAll(regExpression, "").toLowerCase().trim().split("\\s+");
             for (String word : words) {
                 if (useStopWords && stopWords.contains(word)) continue;
-                // terms.addWord(word);
                 listOfWords.add(word);
             }
         }
@@ -157,6 +161,9 @@ public class FileParser {
     public void write(String fileName) {
         fileName = Util.removePath(fileName);
         fileName = Util.removeExtension(fileName);
+        if (minimumFrequency > 1) {
+            terms.removeTermsWithFrequencyLowerThan(minimumFrequency);
+        }
         // Util.writeToFile(fileName + "-ordered-by-word.txt",           terms.getMapOrderedByValueAsc());
         // Util.writeToFile(fileName + "-ordered-by-frequency-asc.txt",  terms.getMapOrderedByValueAsc());
         Util.writeToFile(fileName + "-ordered-by-frequency-desc.txt", terms.getMapOrderedByValueDesc());
