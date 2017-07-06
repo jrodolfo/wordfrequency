@@ -26,16 +26,21 @@ public class PropertyValues {
         try {
             final String propFileName = "wordfrequency.properties";
             inputStream = MethodHandles.lookup().lookupClass().getClassLoader().getResourceAsStream(propFileName);
+
             if (inputStream != null) {
                 properties.load(inputStream);
             } else {
                 throw new FileNotFoundException("Property file '" + propFileName + "' was not found in the classpath.");
             }
+
+            // debug:
             logger.debug("files.to.parse=" + properties.getProperty("files.to.parse"));
             logger.debug("use.stop.words=" + properties.getProperty("use.stop.words"));
             logger.debug("stop.words.file=" + properties.getProperty("stop.words.file"));
             logger.debug("number.of.words=" + properties.getProperty("number.of.words.per.term"));
             logger.debug("minimum.frequency.threshold=" + properties.getProperty("minimum.frequency.threshold"));
+            logger.debug("regular.expression=" + properties.getProperty("regular.expression"));
+
         } catch (Exception e) {
             logger.error("Exception: " + e);
         } finally {
