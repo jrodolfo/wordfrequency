@@ -28,9 +28,9 @@ public class FileParser {
     private final static int minimumFrequencyThreshold;
     private final static List<String> filesToParse;
     private final static int numberOfWordsPerTerm;
+    private final static String regularExpression;
 
     private List<String> listOfWords;
-    private int numberOfTermsBeingProcessed = 1;
 
     static {
         properties = PropertyValues.getProperties();
@@ -44,9 +44,8 @@ public class FileParser {
             stopWords = null;
         }
         filesToParse = Util.stringToList(properties.getProperty("files.to.parse"), ',');
+        regularExpression = properties.getProperty("regular.expression");
     }
-
-    public FileParser(){}
 
     private static Set getStopWords(String fileName) {
         String fileNameWithPath = getFileNameWithPath(fileName);
@@ -65,14 +64,10 @@ public class FileParser {
     }
 
     public void parse(String fileName) {
-
         String fileNameWithPath = getFileNameWithPath(fileName);
-
         for (int i = 1; i <= numberOfWordsPerTerm; i++) {
-
             listOfWords = new ArrayList<>();
             String line;
-
             try (BufferedReader br = new BufferedReader(new FileReader(fileNameWithPath))) {
                 while ((line = br.readLine()) != null) {
                     processLine(line);
@@ -84,34 +79,22 @@ public class FileParser {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             Terms terms = processListOfWords(i);
             write(fileName, terms, i);
             terms.clearMap();
-
         }
     }
 
     /**
      * This method process a non-null string representing a line in file being parsed. It removes
-     * all characters that are not blank, letters (ascii or foreign language), digits,
-     * underscore, minus sign, and dot. If the class is using stop words, it removes them
-     *
+     * all characters represented by the regular expression from this class
      * @param line
      */
     private void processLine(String line) {
         if (line == null) throw new IllegalArgumentException("this method does not accept null line");
         line = line.trim();
-        // Regular expression representing any char that is not:
-        //     1) a blank
-        //     2) a letter in any language
-        //     3) digits
-        //     4) underscore
-        //     5) minus sign
-        //     6) dot
-        String regExpression = "[^\\p{L}0-9_.\\- ]";
         if (line.length() > 0) {
-            String[] words = line.replaceAll(regExpression, "").toLowerCase().trim().split("\\s+");
+            String[] words = line.replaceAll(regularExpression, "").toLowerCase().trim().split("\\s+");
             for (String word : words) {
                 if (useStopWords && stopWords.contains(word)) continue;
                 listOfWords.add(word);
