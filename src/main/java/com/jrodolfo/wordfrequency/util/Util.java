@@ -41,6 +41,8 @@ public class Util {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else {
+            logger.debug("Refusing to write empty or null content to file " + fileName);
         }
     }
 
