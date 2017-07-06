@@ -5,6 +5,6 @@ target/
 .idea/
 *.iml
 
-# some input/output files that we don't want to public to the world
+# some input/output files that we don't want to publish to the world
 src/main/resources/input/file-06*.txt
 output/file-06*.txt
