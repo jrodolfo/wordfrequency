@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * Util class to help with files.
- *
+ * <p>
  * Created by Rod Oliveira on 18-Jun-2017
  */
 public class Util {
@@ -29,25 +29,28 @@ public class Util {
     }
 
     public static void writeToFile(String fileName, String content) {
-        try {
-            fileName = "output/" + fileName;
-            File file = new File(fileName);
-            if (!file.exists()) file.createNewFile();
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(content);
-            bw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (content != null && !content.isEmpty()) {
+            try {
+                fileName = "output/" + fileName;
+                File file = new File(fileName);
+                if (!file.exists()) file.createNewFile();
+                FileWriter fw = new FileWriter(file.getAbsoluteFile());
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write(content);
+                bw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     /**
-     *  This method removes the string "file:/C:" from a file url string
+     * This method removes the string "file:/C:" from a file url string
+     *
      * @param filePath, a string with protocol and driver, representing a file, for example:
-     *                 file:/C:/dev/workspace/word-frequency/target/classes/input/file-03-latin.txt
+     *                  file:/C:/dev/workspace/word-frequency/target/classes/input/file-03-latin.txt
      * @return the file path without the protocol and driver, for example:
-     *                  /dev/workspace/word-frequency/target/classes/input/file-03-latin.txt
+     * /dev/workspace/word-frequency/target/classes/input/file-03-latin.txt
      */
     @NotNull
     public static String removeProtocolAndDriver(String filePath) {
@@ -55,11 +58,12 @@ public class Util {
     }
 
     /**
-     *  This method removes the path part of a string representing a file
+     * This method removes the path part of a string representing a file
+     *
      * @param filePath, a string with path representing a file, for example:
-     *                 input/file-03-latin.txt
+     *                  input/file-03-latin.txt
      * @return the file path without the protocol and driver, for example:
-     *                  file-03-latin.txt
+     * file-03-latin.txt
      */
     @NotNull
     public static String removePath(String filePath) {
@@ -67,11 +71,12 @@ public class Util {
     }
 
     /**
-     *  This method removes the path part of a string representing a file
+     * This method removes the path part of a string representing a file
+     *
      * @param fileName, a string with path representing a file, for example:
-     *                 input/file-03-latin.txt
+     *                  input/file-03-latin.txt
      * @return the file path without the protocol and driver, for example:
-     *                  file-03-latin.txt
+     * file-03-latin.txt
      */
     @NotNull
     public static String removeExtension(String fileName) {
@@ -79,21 +84,20 @@ public class Util {
     }
 
     /**
-     *
      * @param fileName
-     * @return  if the method finds the file, it returns a string representing the
-     *  file name and path, without the protocol and driver
+     * @return if the method finds the file, it returns a string representing the
+     * file name and path, without the protocol and driver
      */
     @Nullable
     public static String getFileNameWithPath(String fileName) {
         Class clazz = MethodHandles.lookup().lookupClass();
-        ClassLoader classLoader =  clazz.getClassLoader();
+        ClassLoader classLoader = clazz.getClassLoader();
         URL resource = classLoader.getResource(fileName);
         if (resource == null) {
             logger.debug("Resource is null. Check if the file " + fileName + " exists.");
             return null;
         }
-        String fileNameWithProtocolDriverAndPath =  resource.toExternalForm();
+        String fileNameWithProtocolDriverAndPath = resource.toExternalForm();
         String fileNameWithPath = removeProtocolAndDriver(fileNameWithProtocolDriverAndPath);
         return fileNameWithPath;
     }

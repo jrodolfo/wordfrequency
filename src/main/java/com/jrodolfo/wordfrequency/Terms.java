@@ -7,7 +7,7 @@ import static com.jrodolfo.wordfrequency.Terms.SortOrder.DESC;
 
 
 /**
- * This class holds all terms found inside the file being parsed,
+ * This class holds all map found inside the file being parsed,
  * with its frequency.
  *
  * Created by Rod Oliveira (jrodolfo.com) on 2017-06-18
@@ -18,43 +18,55 @@ public class Terms {
         ASC, DESC
     }
 
-    Map<String, Integer> terms = new TreeMap<>();
+    Map<String, Integer> map;
+
+    public Terms() {
+        map = new TreeMap<>();
+    }
+
+    public void clearMap() {
+        map.clear();
+    }
+
+    public int getNumberOfTerms() {
+        return map.size();
+    }
 
     public void addTerm(String word) {
-        if (terms.containsKey(word)) {
-            Integer count = terms.get(word);
+        if (map.containsKey(word)) {
+            Integer count = map.get(word);
             count++;
-            terms.put(word, count);
+            map.put(word, count);
         } else {
-            terms.put(word, 1);
+            map.put(word, 1);
         }
     }
 
     public void removeTermsWithFrequencyLowerThan(int frequency) {
-        Map<String, Integer> termsAux = new TreeMap<>();
+        Map<String, Integer> mapAux = new TreeMap<>();
         String key;
         Integer value;
-        for (Map.Entry<String, Integer> node : terms.entrySet()) {
+        for (Map.Entry<String, Integer> node : map.entrySet()) {
             key = node.getKey();
             value = node.getValue();
             if (value >= frequency) {
-                termsAux.put(key, value);
+                mapAux.put(key, value);
             }
         }
-        terms = termsAux;
+        map = mapAux;
     }
 
     public String getMapOrderedByKey() {
-        return toString(terms);
+        return toString(map);
     }
 
     public String getMapOrderedByValueAsc() {
-        Map<String, Integer> sortedMapByValueAsc = sortMapByValue(terms, ASC);
+        Map<String, Integer> sortedMapByValueAsc = sortMapByValue(map, ASC);
         return toString(sortedMapByValueAsc);
     }
 
     public String getMapOrderedByValueDesc() {
-        Map<String, Integer> sortedMapByValueDesc = sortMapByValue(terms, DESC);
+        Map<String, Integer> sortedMapByValueDesc = sortMapByValue(map, DESC);
         return toString(sortedMapByValueDesc);
     }
 
@@ -64,7 +76,7 @@ public class Terms {
         for (String term : map.keySet()) {
             result.append(term + "," + map.get(term) + "\n");
         }
-        return result.toString();
+        return result.toString().trim();
     }
 
     private static Map<String, Integer> sortMapByValue(Map<String, Integer> map, final SortOrder order) {

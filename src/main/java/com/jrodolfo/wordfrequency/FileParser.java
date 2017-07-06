@@ -15,7 +15,7 @@ import java.util.*;
 /**
  * Main class of this application, responsible for parsing
  * the data, and saving the results in output files.
- *
+ * <p>
  * Created by Rod Oliveira (jrodolfo.com) on 2017-06-18
  */
 public class FileParser {
@@ -25,14 +25,12 @@ public class FileParser {
     private final static boolean useStopWords;
     private final static String stopWordsFile;
     private final static Set<String> stopWords;
-    private final static int numberOfWordsPerTerm;
     private final static int minimumFrequencyThreshold;
+    private final static List<String> filesToParse;
+    private final static int numberOfWordsPerTerm;
 
-
-    private List<String> filesToParse;
-    private int numberOfWordsPerTerms;
-    private Terms terms;
     private List<String> listOfWords;
+    private int numberOfTermsBeingProcessed = 1;
 
     static {
         properties = PropertyValues.getProperties();
@@ -45,12 +43,10 @@ public class FileParser {
         } else {
             stopWords = null;
         }
+        filesToParse = Util.stringToList(properties.getProperty("files.to.parse"), ',');
     }
 
-    public FileParser() {
-        filesToParse = Util.stringToList(properties.getProperty("files.to.parse"), ',');
-        numberOfWordsPerTerms = Integer.parseInt(properties.getProperty("number.of.words.per.term"));
-    }
+    public FileParser(){}
 
     private static Set getStopWords(String fileName) {
         String fileNameWithPath = getFileNameWithPath(fileName);
@@ -69,24 +65,35 @@ public class FileParser {
     }
 
     public void parse(String fileName) {
+
         String fileNameWithPath = getFileNameWithPath(fileName);
-        terms = new Terms();
-        listOfWords = new ArrayList<>();
-        String line;
-        try (BufferedReader br = new BufferedReader(new FileReader(fileNameWithPath))) {
-            while ((line = br.readLine()) != null) {
-                processLine(line);
+
+        for (int i = 1; i <= numberOfWordsPerTerm; i++) {
+
+            listOfWords = new ArrayList<>();
+            String line;
+
+            try (BufferedReader br = new BufferedReader(new FileReader(fileNameWithPath))) {
+                while ((line = br.readLine()) != null) {
+                    processLine(line);
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                logger.debug("Could not find the file " + fileName);
+                System.exit(-1);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            processListOfWords(numberOfWordsPerTerms);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+
+            Terms terms = processListOfWords(i);
+            write(fileName, terms, i);
+            terms.clearMap();
+
         }
-        write(fileName);
     }
 
-    private void processListOfWords(int numberOfWords) {
+    private Terms processListOfWords(int numberOfWords) {
+        Terms terms = new Terms();
         if (numberOfWords > 1) {
             int start = 0;
             int end = numberOfWords - 1;
@@ -109,12 +116,14 @@ public class FileParser {
                 terms.addTerm(word);
             }
         }
+        return terms;
     }
 
     /**
      * This method process a non-null string representing a line in file being parsed. It removes
      * all characters that are not blank, letters (ascii or foreign language), digits,
      * underscore, and minus sign. If the class is using stop words, it removes them
+     *
      * @param line
      */
     private void processLine(String line) {
@@ -136,18 +145,18 @@ public class FileParser {
         }
     }
 
-    public void debug(String fileName) {
-        logger.debug("\n\n\tWord frequency for file " + fileName + " ordered by words in ascending order:\n");
-        logger.debug("\n\n" + terms.getMapOrderedByKey());
-        logger.debug("\n\n\tWord frequency for file " + fileName + " ordered by frequency in ascending order:\n");
-        logger.debug("\n\n" + terms.getMapOrderedByValueAsc() + "\n");
-        logger.debug("\n\n\tWord frequency for file " + fileName + " ordered by frequency in descending order:\n");
-        logger.debug("\n\n" + terms.getMapOrderedByValueDesc() + "\n");
-        if (stopWords != null) {
-            logger.debug("\n\n\tStop words from file " + stopWordsFile + ":\n");
-            logger.debug("\n\n" + stopWords.toString() + "\n");
-        }
-    }
+//    public void debug(String fileName) {
+//        logger.debug("\n\n\tWord frequency for file " + fileName + " ordered by words in ascending order:\n");
+//        logger.debug("\n\n" + map.getMapOrderedByKey());
+//        logger.debug("\n\n\tWord frequency for file " + fileName + " ordered by frequency in ascending order:\n");
+//        logger.debug("\n\n" + map.getMapOrderedByValueAsc() + "\n");
+//        logger.debug("\n\n\tWord frequency for file " + fileName + " ordered by frequency in descending order:\n");
+//        logger.debug("\n\n" + map.getMapOrderedByValueDesc() + "\n");
+//        if (stopWords != null) {
+//            logger.debug("\n\n\tStop words from file " + stopWordsFile + ":\n");
+//            logger.debug("\n\n" + stopWords.toString() + "\n");
+//        }
+//    }
 
     private static String getFileNameWithPath(String fileName) {
         String fileNameWithPath = Util.getFileNameWithPath(fileName);
@@ -158,15 +167,18 @@ public class FileParser {
         return fileNameWithPath;
     }
 
-    public void write(String fileName) {
+    public void write(String fileName, Terms terms, int numberOfWordsPerTerm) {
         fileName = Util.removePath(fileName);
         fileName = Util.removeExtension(fileName);
         if (minimumFrequencyThreshold > 1) {
             terms.removeTermsWithFrequencyLowerThan(minimumFrequencyThreshold);
         }
-        // Util.writeToFile(fileName + "-ordered-by-word.txt",           terms.getMapOrderedByValueAsc());
-        // Util.writeToFile(fileName + "-ordered-by-frequency-asc.txt",  terms.getMapOrderedByValueAsc());
-        Util.writeToFile(fileName + "-ordered-by-frequency-desc.txt", terms.getMapOrderedByValueDesc());
+        fileName += "-" + numberOfWordsPerTerm + "-" + "word";
+        if (numberOfWordsPerTerm > 1) {
+            fileName += "s";
+        }
+        fileName += "-per-term.txt";
+        Util.writeToFile(fileName, terms.getMapOrderedByValueDesc());
     }
 
     public List<String> getFilesToParse() {
