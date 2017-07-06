@@ -12,7 +12,6 @@ public class App
         FileParser fileParser = new FileParser();
         for (String fileName : fileParser.getFilesToParse()) {
             fileParser.parse(fileName);
-            // fileParser.debug(fileName);
         }
     }
 }

@@ -1,21 +1,19 @@
-re publica,25
-rei publicae,19
-rem publicam,15
+re publica,24
+rei publicae,17
+rem publicam,13
 et in,12
 de re,10
 in qua,9
 rerum publicarum,8
 tum laelius,8
 est enim,7
-inquit scipio,7
 ob rem,7
 quam ob,7
 scipio quid,7
-vero inquit,7
 a te,6
 et cum,6
-scipio ergo,6
 tum ille,6
+vero inquit,6
 ab iis,5
 de quo,5
 eius modi,5
@@ -28,6 +26,7 @@ in rebus,5
 inter se,5
 nec vero,5
 potest esse,5
+scipio ergo,5
 a quibus,4
 ad rem,4
 atque in,4
@@ -41,6 +40,7 @@ in ea,4
 in hoc,4
 in primis,4
 in re,4
+inquit scipio,4
 laelius non,4
 laelius video,4
 neque enim,4
@@ -67,7 +67,6 @@ eam causam,3
 ego vero,3
 enim esse,3
 enim est,3
-esse praestantius,3
 est ex,3
 est in,3
 est non,3
@@ -87,7 +86,6 @@ in eo,3
 in illa,3
 in illo,3
 in omni,3
-inquit et,3
 inquit ille,3
 laelius ego,3
 laelius quid,3
@@ -109,7 +107,6 @@ sit et,3
 tamen et,3
 tum cum,3
 usque ad,3
-ut dicis,3
 ut dixi,3
 ut in,3
 vel in,3

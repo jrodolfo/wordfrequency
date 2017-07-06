@@ -92,6 +92,33 @@ public class FileParser {
         }
     }
 
+    /**
+     * This method process a non-null string representing a line in file being parsed. It removes
+     * all characters that are not blank, letters (ascii or foreign language), digits,
+     * underscore, minus sign, and dot. If the class is using stop words, it removes them
+     *
+     * @param line
+     */
+    private void processLine(String line) {
+        if (line == null) throw new IllegalArgumentException("this method does not accept null line");
+        line = line.trim();
+        // Regular expression representing any char that is not:
+        //     1) a blank
+        //     2) a letter in any language
+        //     3) digits
+        //     4) underscore
+        //     5) minus sign
+        //     6) dot
+        String regExpression = "[^\\p{L}0-9_.\\- ]";
+        if (line.length() > 0) {
+            String[] words = line.replaceAll(regExpression, "").toLowerCase().trim().split("\\s+");
+            for (String word : words) {
+                if (useStopWords && stopWords.contains(word)) continue;
+                listOfWords.add(word);
+            }
+        }
+    }
+
     private Terms processListOfWords(int numberOfWords) {
         Terms terms = new Terms();
         if (numberOfWords > 1) {
@@ -118,45 +145,6 @@ public class FileParser {
         }
         return terms;
     }
-
-    /**
-     * This method process a non-null string representing a line in file being parsed. It removes
-     * all characters that are not blank, letters (ascii or foreign language), digits,
-     * underscore, and minus sign. If the class is using stop words, it removes them
-     *
-     * @param line
-     */
-    private void processLine(String line) {
-        if (line == null) throw new IllegalArgumentException("this method does not accept null line");
-        line = line.trim();
-        // Regular expression representing any char that is not:
-        //     1) a blank
-        //     2) a letter in any language
-        //     3) digits
-        //     4) underscore
-        //     5) minus sign
-        String regExpression = "[^\\p{L}0-9_\\- ]";
-        if (line.length() > 0) {
-            String[] words = line.replaceAll(regExpression, "").toLowerCase().trim().split("\\s+");
-            for (String word : words) {
-                if (useStopWords && stopWords.contains(word)) continue;
-                listOfWords.add(word);
-            }
-        }
-    }
-
-//    public void debug(String fileName) {
-//        logger.debug("\n\n\tWord frequency for file " + fileName + " ordered by words in ascending order:\n");
-//        logger.debug("\n\n" + map.getMapOrderedByKey());
-//        logger.debug("\n\n\tWord frequency for file " + fileName + " ordered by frequency in ascending order:\n");
-//        logger.debug("\n\n" + map.getMapOrderedByValueAsc() + "\n");
-//        logger.debug("\n\n\tWord frequency for file " + fileName + " ordered by frequency in descending order:\n");
-//        logger.debug("\n\n" + map.getMapOrderedByValueDesc() + "\n");
-//        if (stopWords != null) {
-//            logger.debug("\n\n\tStop words from file " + stopWordsFile + ":\n");
-//            logger.debug("\n\n" + stopWords.toString() + "\n");
-//        }
-//    }
 
     private static String getFileNameWithPath(String fileName) {
         String fileNameWithPath = Util.getFileNameWithPath(fileName);
