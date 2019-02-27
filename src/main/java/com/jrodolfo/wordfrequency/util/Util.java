@@ -31,9 +31,17 @@ public class Util {
     public static void writeToFile(String fileName, String content) {
         if (content != null && !content.isEmpty()) {
             try {
-                fileName = "output/" + fileName;
+                String path = "";
+                fileName = "wordfrequency/output/" + fileName;
                 File file = new File(fileName);
-                if (!file.exists()) file.createNewFile();
+                boolean fileExists = file.exists();
+                if (!fileExists) {
+                    // get absolute path
+                    path = file.getAbsolutePath();
+                    // System.out.println("Absolute Pathname : " + path);
+                    logger.debug("Absolute Path Name: " + path);
+                    file.createNewFile();
+                }
                 FileWriter fw = new FileWriter(file.getAbsoluteFile());
                 BufferedWriter bw = new BufferedWriter(fw);
                 bw.write(content);
